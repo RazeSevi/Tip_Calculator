@@ -49,7 +49,7 @@ class _DoubleInputWithPercentageListState
           ),
           const SizedBox(height: 26.0),
           Text(
-            "Amount: ${userInput}\n${percentageValue}% Tip\nTotal amount: ${(userInput + (userInput * percentageValue/100)).toStringAsFixed(2)}",
+            "Amount: ${userInput}\$ \n${userInput * percentageValue/100}\$ Tip\nTotal amount: ${(userInput + (userInput * percentageValue/100)).toStringAsFixed(2)}\$",
             style: const TextStyle(fontSize: 24.0),
           ),
         ],
