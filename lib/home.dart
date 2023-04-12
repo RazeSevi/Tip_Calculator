@@ -36,21 +36,162 @@ class _DoubleInputWithPercentageListState
               },
             ),
           ),
-          const SizedBox(height: 24.0),
+
+          const SizedBox(height: 4.0),
+
           SizedBox(
             height: 100.0,
             child: NumberPicker(
-                    value: percentageValue,
-                    minValue: 0,
-                    maxValue: 100,
-                    onChanged: (value) =>
-                        setState(() => percentageValue = value),
-                  ),
+              value: percentageValue,
+              minValue: 0,
+              maxValue: 100,
+              onChanged: (value) => setState(() => percentageValue = value),
+            ),
           ),
-          const SizedBox(height: 26.0),
-          Text(
-            "Amount: ${userInput}\$ \n${userInput * percentageValue/100}\$ Tip\nTotal amount: ${(userInput + (userInput * percentageValue/100)).toStringAsFixed(2)}\$",
-            style: const TextStyle(fontSize: 24.0),
+          const SizedBox(height: 32),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.remove),
+                onPressed: () => setState(() {
+                  final newValue = percentageValue - 1;
+                  percentageValue = newValue.clamp(0, 100);
+                }),
+              ),
+              Text.rich(
+                      TextSpan(
+                        text: "Current Tip: ",
+                        style: const TextStyle(fontSize: 20),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: percentageValue.toStringAsFixed(0),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 167, 123, 4),
+                            ),
+                          ),
+                          const TextSpan(
+                          text: '%',
+                        ),
+                        ],
+                      ),
+                    ),
+              IconButton(
+                icon: const Icon(Icons.add),
+                onPressed: () => setState(() {
+                  final newValue = percentageValue + 1;
+                  percentageValue = newValue.clamp(0, 100);
+                }),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 50.0),
+
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 1000.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text.rich(
+                      TextSpan(
+                        text: "Amount: ",
+                        style: const TextStyle(fontSize: 24),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: (userInput).toStringAsFixed(2),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 167, 123, 4),
+                            ),
+
+                          ),
+                          const TextSpan(
+                          text: '\$',
+                        ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 1000.0,
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 10, bottom: 10),
+                    decoration: BoxDecoration(
+                    border: Border.all(
+                        color: Colors.grey,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text.rich(
+                      TextSpan(
+                        text: "Tip in \$: ",
+                        style: const TextStyle(fontSize: 24),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: ((userInput * percentageValue) / 100).toStringAsFixed(2),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 167, 123, 4),
+                            ),
+                          ),
+                          const TextSpan(
+                          text: '\$',
+                        ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 1000.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                    border: Border.all(
+                        color: Colors.grey,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text.rich(
+                      TextSpan(
+                        text: 'Total amount: ',
+                        style: const TextStyle(fontSize: 24),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: (userInput + (userInput * percentageValue / 100)).toStringAsFixed(2),
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromARGB(255, 167, 123, 4),
+                            ),
+                          ),
+                          const TextSpan(
+                          text: '\$',
+                        ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
