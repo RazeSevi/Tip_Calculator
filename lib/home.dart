@@ -48,7 +48,7 @@ class _DoubleInputWithPercentageListState
               onChanged: (value) => setState(() => percentageValue = value),
             ),
           ),
-          const SizedBox(height: 32),
+          const SizedBox(height: 4.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -87,7 +87,7 @@ class _DoubleInputWithPercentageListState
             ],
           ),
 
-          const SizedBox(height: 50.0),
+          const SizedBox(height: 5.0),
 
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
