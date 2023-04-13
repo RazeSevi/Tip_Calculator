@@ -7,8 +7,7 @@ class DoubleInputWithPercentageList extends StatefulWidget {
       _DoubleInputWithPercentageListState();
 }
 
-class _DoubleInputWithPercentageListState
-    extends State<DoubleInputWithPercentageList> {
+class _DoubleInputWithPercentageListState extends State<DoubleInputWithPercentageList> {
   double userInput = 0.0;
   int percentageValue = 0;
 
@@ -107,23 +106,7 @@ class _DoubleInputWithPercentageListState
                     ),
                     padding: const EdgeInsets.all(10.0),
                     child: Text.rich(
-                      TextSpan(
-                        text: "Amount: ",
-                        style: const TextStyle(fontSize: 24),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: (userInput).toStringAsFixed(2),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 167, 123, 4),
-                            ),
-
-                          ),
-                          const TextSpan(
-                          text: '\$',
-                        ),
-                        ],
-                      ),
+                      amountString("Amount: ", (userInput).toStringAsFixed(2), '\$')
                     ),
                   ),
                 ),
@@ -140,22 +123,7 @@ class _DoubleInputWithPercentageListState
                     ),
                     padding: const EdgeInsets.all(10.0),
                     child: Text.rich(
-                      TextSpan(
-                        text: "Tip in \$: ",
-                        style: const TextStyle(fontSize: 24),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: ((userInput * percentageValue) / 100).toStringAsFixed(2),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 167, 123, 4),
-                            ),
-                          ),
-                          const TextSpan(
-                          text: '\$',
-                        ),
-                        ],
-                      ),
+                      amountString("Tip in \$: ", ((userInput * percentageValue) / 100).toStringAsFixed(2), '\$')
                     ),
                   ),
                 ),
@@ -171,22 +139,7 @@ class _DoubleInputWithPercentageListState
                     ),
                     padding: const EdgeInsets.all(10.0),
                     child: Text.rich(
-                      TextSpan(
-                        text: 'Total amount: ',
-                        style: const TextStyle(fontSize: 24),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: (userInput + (userInput * percentageValue / 100)).toStringAsFixed(2),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromARGB(255, 167, 123, 4),
-                            ),
-                          ),
-                          const TextSpan(
-                          text: '\$',
-                        ),
-                        ],
-                      ),
+                      amountString('Total amount: ', (userInput + (userInput * percentageValue / 100)).toStringAsFixed(2), "\$")
                     ),
                   ),
                 ),
@@ -197,4 +150,23 @@ class _DoubleInputWithPercentageListState
       ),
     );
   }
+}
+
+TextSpan amountString(String text, String amount, String endText){
+  return TextSpan(
+    text: text,
+    style: const TextStyle(fontSize: 24),
+    children: <TextSpan>[
+      TextSpan(
+        text: amount,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Color.fromARGB(255, 167, 123, 4),
+        ),
+      ),
+      TextSpan(
+        text: endText,
+      ),
+    ],
+  );
 }
